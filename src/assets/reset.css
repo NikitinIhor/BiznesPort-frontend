@@ -6,8 +6,8 @@ body {
   font-family: sans-serif;
   font-weight: 500;
   line-height: 1.5;
-  background-color: var(--black-color);
-  color: var(--white-color);
+  background-color: black;
+  color: white;
   /* 14px */
   font-size: 0.875rem;
 }
@@ -61,8 +61,8 @@ a {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1200px) {
   .container {
-    max-width: 1440px;
+    max-width: 1200px;
   }
 }

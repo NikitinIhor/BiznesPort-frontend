@@ -1,7 +1,13 @@
-// https://biznesport-backend.onrender.com/
+import CreateMessage from "./components/AddMessage/CreateMessage";
+import Messages from "./components/Messages/Messages";
 
 const App: React.FC = () => {
-  return <div className="container"> App</div>;
+  return (
+    <div className="container">
+      <CreateMessage />
+      <Messages />
+    </div>
+  );
 };
 
 export default App;

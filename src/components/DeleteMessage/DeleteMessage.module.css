@@ -1,0 +1,44 @@
+.wrapper {
+  color: black;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.text {
+  padding-top: calc(15 / 16 * 1rem);
+  font-size: calc(18 / 16 * 1rem);
+  margin-bottom: calc(10 / 16 * 1rem);
+}
+.message {
+  text-align: center;
+  font-size: calc(16 / 16 * 1rem);
+  color: red;
+  margin-bottom: calc(10 / 16 * 1rem);
+}
+.btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.btns button {
+  padding: calc(10 / 16 * 1rem) calc(15 / 16 * 1rem);
+  font-size: calc(20 / 16 * 1rem);
+  transition: all 0.4s ease;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: calc(5 / 16 * 1rem);
+}
+.btns button:hover {
+  border-color: black;
+}
+.btns button:first-child:hover {
+  background-color: rgb(113, 241, 113);
+}
+.btns button:last-child:hover {
+  background-color: rgb(235, 122, 122);
+}

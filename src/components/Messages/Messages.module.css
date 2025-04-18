@@ -1,0 +1,44 @@
+.wrapper {
+  padding-top: calc(100 / 16 * 1rem);
+}
+.wrapper h1 {
+  font-size: calc(18 / 16 * 1rem);
+  margin-bottom: calc(15 / 16 * 1rem);
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(18 / 16 * 1rem);
+  margin-bottom: calc(10 / 16 * 1rem);
+  padding: 0 1rem;
+}
+.item {
+  color: black;
+  padding: calc(10 / 16 * 1rem);
+  background-color: rgb(231, 228, 228);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+.item p {
+  font-size: calc(16 / 16 * 1rem);
+}
+.item:not(:last-child) {
+  margin-bottom: calc(15 / 16 * 1rem);
+}
+.btns {
+  display: flex;
+  gap: calc(10 / 16 * 1rem);
+}
+.edit,
+.delete {
+  display: flex;
+  align-items: center;
+  gap: calc(5 / 16 * 1rem);
+  color: black;
+  border: 1px solid black;
+  padding: calc(5 / 16 * 1rem) calc(25 / 16 * 1rem);
+  border-radius: 5px;
+}
