@@ -5,3 +5,20 @@
   transform: translate(-50%, -50%);
   z-index: 1000;
 }
+.container p {
+  font-size: calc(24 / 16 * 1rem);
+  color: white;
+  animation: fadeIn 1s ease-in-out infinite;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
