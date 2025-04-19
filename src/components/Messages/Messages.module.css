@@ -5,8 +5,8 @@
   display: flex;
   align-items: center;
   gap: calc(10 / 16 * 1rem);
-  font-size: calc(34 / 16 * 1rem);
-  margin-bottom: calc(20 / 16 * 1rem);
+  font-size: calc(26 / 16 * 1rem);
+  margin-bottom: calc(40 / 16 * 1rem);
   color: gray;
   position: relative;
 }
@@ -23,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: calc(18 / 16 * 1rem);
+  font-size: calc(12 / 16 * 1rem);
   margin-bottom: calc(10 / 16 * 1rem);
   padding: 0 1rem;
 }
@@ -44,7 +44,8 @@
 }
 .btns {
   display: flex;
-  gap: calc(10 / 16 * 1rem);
+  flex-direction: column;
+  gap: calc(5 / 16 * 1rem);
 }
 .edit,
 .delete {
@@ -53,11 +54,32 @@
   gap: calc(5 / 16 * 1rem);
   color: black;
   border: 1px solid black;
-  padding: calc(5 / 16 * 1rem) calc(25 / 16 * 1rem);
+  padding: calc(5 / 16 * 1rem);
   border-radius: 5px;
+  font-size: calc(10 / 16 * 1rem);
 }
 .empty {
   font-size: calc(24 / 16 * 1rem);
   text-align: center;
   opacity: 0.5;
+}
+
+@media (min-width: 768px) {
+  .wrapper h1 {
+    font-size: calc(34 / 16 * 1rem);
+    margin-bottom: calc(40 / 16 * 1rem);
+  }
+  .header {
+    font-size: calc(18 / 16 * 1rem);
+  }
+  .btns {
+    flex-direction: row;
+    gap: calc(10 / 16 * 1rem);
+  }
+  .edit,
+  .delete {
+    gap: calc(5 / 16 * 1rem);
+    padding: calc(5 / 16 * 1rem) calc(25 / 16 * 1rem);
+    font-size: 1rem;
+  }
 }

@@ -16,7 +16,14 @@
   z-index: 1001;
 }
 .body {
+  width: calc(280 / 16 * 1rem);
   background-color: rgb(255, 255, 255);
-  padding: calc(30 / 16 * 1rem);
+  padding: calc(10 / 16 * 1rem);
   border-radius: 10px;
+}
+@media (min-width: 768px) {
+  .body {
+    padding: calc(30 / 16 * 1rem);
+    width: calc(600 / 16 * 1rem);
+  }
 }

@@ -1,7 +1,6 @@
 .wrapper {
   color: black;
 }
-
 .close {
   position: absolute;
   top: 10px;
@@ -9,7 +8,7 @@
 }
 .text {
   padding-top: calc(15 / 16 * 1rem);
-  font-size: calc(18 / 16 * 1rem);
+  font-size: calc(12 / 16 * 1rem);
   margin-bottom: calc(10 / 16 * 1rem);
 }
 .message {
@@ -25,7 +24,7 @@
 }
 .btns button {
   padding: calc(10 / 16 * 1rem) calc(15 / 16 * 1rem);
-  font-size: calc(20 / 16 * 1rem);
+  font-size: calc(14 / 16 * 1rem);
   transition: all 0.4s ease;
   border: 1px solid transparent;
   border-radius: 5px;
@@ -41,4 +40,13 @@
 }
 .btns button:last-child:hover {
   background-color: rgb(235, 122, 122);
+}
+
+@media (min-width: 768px) {
+  .text {
+    font-size: calc(18 / 16 * 1rem);
+  }
+  .btns button {
+    font-size: calc(20 / 16 * 1rem);
+  }
 }

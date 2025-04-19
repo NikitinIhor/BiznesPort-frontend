@@ -1,19 +1,28 @@
 .create {
   position: absolute;
-  top: calc(50 / 16 * 1rem);
-  right: calc(50 / 16 * 1rem);
+  top: calc(20 / 16 * 1rem);
+  right: calc(20 / 16 * 1rem);
   display: flex;
   align-items: center;
   gap: calc(10 / 16 * 1rem);
   color: white;
-  padding: calc(15 / 16 * 1rem);
+  padding: calc(10 / 16 * 1rem);
   border-radius: calc(200 / 16 * 1rem);
   border: 2px solid white;
-  font-size: calc(18 / 16 * 1rem);
   transition: all 0.4s ease;
+  font-size: calc(10 / 16 * 1rem);
 }
 .create:hover,
 .create:focus {
   background-color: white;
   color: black;
+}
+
+@media (min-width: 768px) {
+  .create {
+    top: calc(50 / 16 * 1rem);
+    right: calc(50 / 16 * 1rem);
+    padding: calc(15 / 16 * 1rem);
+    font-size: 1rem;
+  }
 }
