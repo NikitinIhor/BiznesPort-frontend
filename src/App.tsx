@@ -1,10 +1,10 @@
-import CreateMessage from "./components/AddMessage/CreateMessage";
+import CreateMessageBtn from "./components/CreateMessageBtn/CreateMessageBtn";
 import Messages from "./components/Messages/Messages";
 
 const App: React.FC = () => {
   return (
     <div className="container">
-      <CreateMessage />
+      <CreateMessageBtn />
       <Messages />
     </div>
   );

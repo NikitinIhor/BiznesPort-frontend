@@ -2,34 +2,31 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { FcOk } from "react-icons/fc";
 import { RiCloseLargeLine } from "react-icons/ri";
-import { useDeleteMessageMutation } from "../../RTK/messagesApi";
+import { useCreateMessageMutation } from "../../RTK/messagesApi";
+import css from "../DeleteMessage/DeleteMessage.module.css";
+import css2 from "../EditMessage/EditMessage.module.css";
 import Loader from "../Loader/Loader";
-import css from "./DeleteMessage.module.css";
 
-interface DeleteMessageProps {
-  message: string;
-  id: string;
+interface CreateMessageProps {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const DeleteMessage: React.FC<DeleteMessageProps> = ({
-  message,
-  id,
-  setOpenModal,
-}) => {
+const CreateMessage: React.FC<CreateMessageProps> = ({ setOpenModal }) => {
   const [loading, setLoading] = useState(false);
+  const [newMsg, setNewMsg] = useState<string>("");
 
-  const [deleteMessage] = useDeleteMessageMutation();
+  const [createMessage] = useCreateMessageMutation();
 
-  const handleDeleteMessage = async () => {
+  const handleCreatingMessage = async () => {
     try {
       setLoading(true);
-
-      await deleteMessage(id);
+      await createMessage({
+        message: newMsg,
+      });
 
       setOpenModal(false);
 
-      toast.success("Message was successfully deleted", {
+      toast.success("Message was successfully created", {
         duration: 4000,
         position: "top-right",
       });
@@ -38,6 +35,7 @@ const DeleteMessage: React.FC<DeleteMessageProps> = ({
         duration: 4000,
         position: "top-right",
       });
+      setOpenModal(false);
     } finally {
       setLoading(false);
     }
@@ -47,11 +45,16 @@ const DeleteMessage: React.FC<DeleteMessageProps> = ({
 
   return (
     <div className={css.wrapper}>
-      <p className={css.text}>Do you want to delete message?</p>
-      <p className={css.message}> {message}</p>
+      <p className={css.text}>Do you want to create message?</p>
+
+      <textarea
+        value={newMsg}
+        onChange={(e) => setNewMsg(e.target.value)}
+        className={css2.textarea}
+      />
 
       <div className={css.btns}>
-        <button onClick={handleDeleteMessage}>
+        <button onClick={handleCreatingMessage}>
           <FcOk />
           Yes
         </button>
@@ -65,4 +68,4 @@ const DeleteMessage: React.FC<DeleteMessageProps> = ({
   );
 };
 
-export default DeleteMessage;
+export default CreateMessage;

@@ -1,4 +1,10 @@
 .create {
+  position: absolute;
+  top: calc(50 / 16 * 1rem);
+  right: calc(50 / 16 * 1rem);
+  display: flex;
+  align-items: center;
+  gap: calc(10 / 16 * 1rem);
   color: white;
   padding: calc(15 / 16 * 1rem);
   border-radius: calc(200 / 16 * 1rem);

@@ -1,59 +1,80 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { FcOk } from "react-icons/fc";
 import { RiCloseLargeLine } from "react-icons/ri";
 import { useUpdateMessageMutation } from "../../RTK/messagesApi";
 import css from "../DeleteMessage/DeleteMessage.module.css";
+import Loader from "../Loader/Loader";
+import css2 from "./EditMessage.module.css";
 
 interface EditMessageProps {
   message: string;
-  messageID: string;
-  setOpneModal: React.Dispatch<React.SetStateAction<boolean>>;
+  id: string;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const EditMessage: React.FC<EditMessageProps> = ({
   message,
-  messageID,
-  setOpneModal,
+  id,
+  setOpenModal,
 }) => {
   const [newMsg, setNewMsg] = useState<string>(message);
+  const [loading, setLoading] = useState(false);
 
   const [updateMessage] = useUpdateMessageMutation();
 
   const handleUpdatingMessage = async () => {
     try {
+      setLoading(true);
       await updateMessage({
-        id: messageID,
-        updatedMessage: { message: newMsg },
+        id,
+        message: newMsg,
       });
 
-      setOpneModal(false);
+      setOpenModal(false);
+
+      toast.success("Message was successfully changed", {
+        duration: 4000,
+        position: "top-right",
+      });
     } catch (error: any) {
-      error.message;
+      toast.error(`${error.message}`, {
+        duration: 4000,
+        position: "top-right",
+      });
+      setOpenModal(false);
+    } finally {
+      setLoading(false);
     }
   };
 
+  if (loading) return <Loader />;
+
   return (
     <div className={css.wrapper}>
-      <p className={css.text}>are you really want to change this message?</p>
-      <p className={css.message}> {message}</p>
+      <p className={css.text}>Do you want to change message?</p>
+
+      <textarea
+        placeholder={message}
+        value={newMsg}
+        onChange={(e) => setNewMsg(e.target.value)}
+        className={css2.textarea}
+      />
 
       <div className={css.btns}>
-        <button onClick={handleUpdatingMessage}>
+        <button
+          onClick={handleUpdatingMessage}
+          disabled={newMsg.trim() === message.trim()}
+        >
           <FcOk />
           Yes
         </button>
-        <button onClick={() => setOpneModal(false)}>No</button>
+        <button onClick={() => setOpenModal(false)}>No</button>
       </div>
 
-      <button className={css.close} onClick={() => setOpneModal(false)}>
+      <button className={css.close} onClick={() => setOpenModal(false)}>
         <RiCloseLargeLine color="black" size="24px" />
       </button>
-
-      <textarea
-        value={newMsg}
-        onChange={(e) => setNewMsg(e.target.value)}
-        className={css.textarea}
-      />
     </div>
   );
 };

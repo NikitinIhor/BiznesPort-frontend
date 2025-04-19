@@ -10,10 +10,19 @@ export const messagesApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://biznesport-backend.onrender.com/",
   }),
+  tagTypes: ["Messages"],
+
   endpoints: (builder) => ({
     getAllMessages: builder.query<Message[], void>({
       query: () => "messages",
-      transformResponse: (response: any) => response.data,
+      transformResponse: (response: any) => {
+        return response.data.map((message: any) => ({
+          ...message,
+          id: message._id,
+        }));
+      },
+
+      providesTags: ["Messages"],
     }),
     createMessage: builder.mutation<Message, Partial<Message>>({
       query: (newMessage) => ({
@@ -21,22 +30,33 @@ export const messagesApi = createApi({
         method: "POST",
         body: newMessage,
       }),
+      transformResponse: (response: any) => ({
+        ...response.data,
+        id: response.data._id,
+      }),
+
+      invalidatesTags: ["Messages"],
     }),
-    updateMessage: builder.mutation<
-      Message,
-      { id: string; updatedMessage: Partial<Message> }
-    >({
-      query: ({ id, updatedMessage }) => ({
+    updateMessage: builder.mutation<Message, { id: string; message: string }>({
+      query: ({ id, message }) => ({
         url: `messages/${id}`,
         method: "POST",
-        body: updatedMessage,
+        body: { message },
       }),
+      transformResponse: (response: any) => ({
+        ...response.data,
+        id: response.data._id,
+      }),
+
+      invalidatesTags: ["Messages"],
     }),
     deleteMessage: builder.mutation<void, string>({
       query: (id) => ({
         url: `messages/${id}`,
         method: "DELETE",
       }),
+
+      invalidatesTags: ["Messages"],
     }),
   }),
 });
