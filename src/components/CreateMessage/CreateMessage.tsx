@@ -17,7 +17,9 @@ const CreateMessage: React.FC<CreateMessageProps> = ({ setOpenModal }) => {
 
   const [createMessage] = useCreateMessageMutation();
 
-  const handleCreatingMessage = async () => {
+  const handleCreatingMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     try {
       setLoading(true);
       await createMessage({
@@ -51,17 +53,24 @@ const CreateMessage: React.FC<CreateMessageProps> = ({ setOpenModal }) => {
         value={newMsg}
         onChange={(e) => setNewMsg(e.target.value)}
         className={css2.textarea}
+        required
       />
 
       <div className={css.btns}>
-        <button onClick={handleCreatingMessage}>
+        <button onClick={handleCreatingMessage} disabled={newMsg.trim() === ""}>
           <FcOk />
           Yes
         </button>
-        <button onClick={() => setOpenModal(false)}>No</button>
+        <button type="button" onClick={() => setOpenModal(false)}>
+          No
+        </button>
       </div>
 
-      <button className={css.close} onClick={() => setOpenModal(false)}>
+      <button
+        type="button"
+        className={css.close}
+        onClick={() => setOpenModal(false)}
+      >
         <RiCloseLargeLine color="black" size="24px" />
       </button>
     </div>

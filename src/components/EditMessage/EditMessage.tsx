@@ -23,7 +23,9 @@ const EditMessage: React.FC<EditMessageProps> = ({
 
   const [updateMessage] = useUpdateMessageMutation();
 
-  const handleUpdatingMessage = async () => {
+  const handleUpdatingMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+
     try {
       setLoading(true);
       await updateMessage({
@@ -69,10 +71,16 @@ const EditMessage: React.FC<EditMessageProps> = ({
           <FcOk />
           Yes
         </button>
-        <button onClick={() => setOpenModal(false)}>No</button>
+        <button type="button" onClick={() => setOpenModal(false)}>
+          No
+        </button>
       </div>
 
-      <button className={css.close} onClick={() => setOpenModal(false)}>
+      <button
+        type="button"
+        className={css.close}
+        onClick={() => setOpenModal(false)}
+      >
         <RiCloseLargeLine color="black" size="24px" />
       </button>
     </div>
